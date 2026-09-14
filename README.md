@@ -15,9 +15,11 @@
 ```
 
 ## Стек технологий
+```text
 Backend: Python 3.9+, Flask, SQLAlchemy (ORM), Flask-WTF (формы), Faker (тестовые данные).
 Database: SQLite (по умолчанию), поддержка PostgreSQL/MySQL через изменение строки подключения.
 Frontend: HTML5, CSS3
+```
 
 ## 📂 Структура проекта
 ```text
