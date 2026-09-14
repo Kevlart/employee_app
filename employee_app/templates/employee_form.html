@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<h2>{{ title }}</h2>
+
+<form method="post" class="form">
+    <label>
+        ФИО:
+        <input type="text" name="full_name" required
+               value="{{ employee.full_name if employee else '' }}">
+    </label>
+
+    <label>
+        Должность:
+        <input type="text" name="position" required
+               value="{{ employee.position if employee else '' }}">
+    </label>
+
+    <label>
+        Дата приёма:
+        <input type="date" name="hire_date" required
+               value="{{ employee.hire_date.isoformat() if employee else '' }}">
+    </label>
+
+    <label>
+        Зарплата:
+        <input type="number" name="salary" required min="0"
+               value="{{ employee.salary if employee else '' }}">
+    </label>
+
+    <label>
+        ID начальника (необязательно):
+        <input type="number" name="manager_id"
+               value="{{ employee.manager_id if employee and employee.manager_id else '' }}">
+    </label>
+
+    <div class="form-actions">
+        <button type="submit">Сохранить</button>
+        <a href="{{ url_for('index') }}">Отмена</a>
+    </div>
+</form>
+{% endblock %}

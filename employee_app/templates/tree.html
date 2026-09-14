@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Дерево иерархии{% endblock %}
+
+{% block content %}
+<form method="get" class="filters">
+    <input type="text" name="position" placeholder="Должность для фильтра" value="{{ position_filter or '' }}">
+    <input type="number" name="limit" placeholder="Лимит строк" min="1">
+    <button type="submit">Применить</button>
+    {% if position_filter %}
+        <a href="{{ url_for('tree') }}">Сбросить</a>
+    {% endif %}
+</form>
+
+<div class="tree">
+    {% for lvl, emp in lines %}
+        <div class="tree-line" style="padding-left: {{ lvl * 24 }}px;">
+            {% if lvl > 0 %}<span class="branch">└─</span>{% endif %}
+            <strong>{{ emp.full_name }}</strong>
+            <span class="muted">({{ emp.position }})</span>
+        </div>
+    {% else %}
+        <p>Нет данных.</p>
+    {% endfor %}
+</div>
+{% endblock %}

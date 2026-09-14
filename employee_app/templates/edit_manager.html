@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Смена начальника{% endblock %}
+
+{% block content %}
+<h2>Смена начальника: {{ employee.full_name }}</h2>
+
+<form method="post" class="form">
+    <label>
+        Новый начальник:
+        <select name="manager_id">
+            <option value="">— нет начальника —</option>
+            {% for c in candidates %}
+                <option value="{{ c.id }}"
+                        {% if employee.manager_id == c.id %}selected{% endif %}>
+                    {{ c.full_name }} ({{ c.position }})
+                </option>
+            {% endfor %}
+        </select>
+    </label>
+    <div class="form-actions">
+        <button type="submit">Сохранить</button>
+        <a href="{{ url_for('index') }}">Отмена</a>
+    </div>
+</form>
+{% endblock %}

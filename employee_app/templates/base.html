@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Сотрудники{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>📋 Управление персоналом</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Список</a>
+            <a href="{{ url_for('tree') }}">Дерево</a>
+            <a href="{{ url_for('add_employee') }}">+ Добавить</a>
+            <a href="{{ url_for('seed_route') }}" onclick="return confirm('Создать тестовых сотрудников? Текущие будут удалены!')">🌱 Сиды</a>
+        </nav>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for cat, msg in messages %}
+                <div class="flash {{ cat }}">{{ msg }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
