@@ -245,7 +245,7 @@ def edit_manager(emp_id):
 @app.route('/seed')
 def seed_route():
     try:
-        n = request.args.get('n', 500, type=int)
+        n = request.args.get('n', 50000, type=int)
         seed_data(n)
         flash(f'Создано {n} тестовых сотрудников.', 'success')
     except Exception as e:
